@@ -1,12 +1,13 @@
-import { StrictMode } from "react";
+import React, { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Root from "./root.tsx";
 
 import "./index.css";
-import HomePage from "./pages/home.tsx";
-import TablePage from "./pages/table.tsx";
+
+const Home = React.lazy(() => import("./pages/home.tsx"));
+const Table = React.lazy(() => import("./pages/table.tsx"));
 
 const router = createBrowserRouter([
   {
@@ -15,11 +16,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "",
-        element: <HomePage />,
+        element: <Home />,
       },
       {
         path: "/table",
-        element: <TablePage />,
+        element: <Table />,
       },
     ],
   },
